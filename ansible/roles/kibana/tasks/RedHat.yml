@@ -1,0 +1,24 @@
+---
+- name: Kibana | Import GPG KEY 
+  rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+- name: Kibana | Copying file kibana.repo to /etc/yum.repos.d/ 
+  copy:
+    src: kibana.repo
+    dest:  /etc/yum.repos.d/kibana.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Kibana | Install Package
+  yum:
+    name: kibana
+    state: latest
+
+- name: Kibana | Start and enable service
+  service:
+    name: kibana
+    state: started
+    enabled: yes

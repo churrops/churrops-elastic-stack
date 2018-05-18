@@ -1,0 +1,44 @@
+---
+- name: Instalando os pre-requisitos
+  hosts: all
+  roles:
+    - roles/common 
+
+- name: Elasticsearch with custom configuration
+  hosts: elasticsearch
+  roles:
+    #expand to all available parameters
+    - { role: elasticsearch, es_instance_name: "node1", es_data_dirs: "/opt/elasticsearch/data", es_log_dir: "/opt/elasticsearch/logs", 
+    es_config: {
+        node.name: "node1", 
+        cluster.name: "churrops", 
+        discovery.zen.ping.unicast.hosts: "localhost:9301", 
+        http.port: 9201, 
+        transport.tcp.port: 9301, 
+        node.data: true, 
+        node.master: true, 
+        bootstrap.memory_lock: true, 
+        } 
+    }
+  vars:
+    es_scripts: true
+    es_templates: true
+    es_version_lock: false
+    es_heap_size: 512m
+    es_start_service: true
+    es_plugins_reinstall: false
+    es_api_port: 9201
+    es_plugins:
+        - plugin: ingest-geoip
+
+- name: Kibana Setup
+  hosts: kibana
+
+  roles:
+    - roles/kibana
+
+- name: Logstash Setup
+  hosts: logstash
+
+  roles:
+    - roles/logstash

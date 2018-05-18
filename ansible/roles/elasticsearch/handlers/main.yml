@@ -1,0 +1,5 @@
+---
+- name: restart elasticsearch
+  service:
+    name: "{{es_service_name}}"
+    state: restarted

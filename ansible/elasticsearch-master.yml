@@ -1,0 +1,24 @@
+---
+- name: Instalando os pre-requisitos
+  hosts: all
+  roles:
+    - roles/common
+
+- name: Install ElasticSearch 
+  hosts: elasticsearch
+  roles:
+    - { role: roles/elasticsearch, es_instance_name: "node1",
+    es_config: {
+        cluster.name: "es-neo-dev",
+#        discovery.zen.ping.unicast.hosts:  "{{ groups['elasticsearch-masternodes']|map('extract', hostvars, 'inventory_hostname') | array_to_str }}" ,
+#        discovery.zen.ping.unicast.hosts: "[]:9300",
+        http.port: 9200,
+#        transport.tcp.port: 9300,
+        node.data: true,
+        node.master: true,
+        bootstrap.memory_lock: false,
+        }
+    }
+  vars:
+    es_plugins:
+      - plugin: ingest-geoip

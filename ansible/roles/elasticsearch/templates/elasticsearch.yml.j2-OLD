@@ -1,0 +1,49 @@
+### MANAGED BY ANSIBLE ###
+
+{% if es_config %}
+{{ es_config | to_nice_yaml }}
+{% endif %}
+
+{% if es_config['cluster.name'] is not defined %}
+cluster.name: elasticsearch
+{% endif %}
+
+{% if es_config['node.name'] is not defined %}
+node.name: {{inventory_hostname}}-{{es_instance_name}}
+{% endif %}
+#################################### Paths ####################################
+
+# Path to directory containing configuration (this file and logging.yml):
+path.conf: {{ es_conf_dir }}
+
+path:
+  logs:
+    - {{ log_dir }}
+  data:
+{% for datadir in es_datadirs %}
+    - {{datadir.name}}
+{% endfor %}
+
+#################################### X-PACK ####################################
+
+{% if es_enable_xpack %}
+{% if not "security" in es_xpack_features %}
+xpack.security.enabled: false
+{% endif %}
+
+{% if not "monitoring" in es_xpack_features %}
+xpack.monitoring.enabled: false
+{% endif %}
+
+{% if not "alerting" in es_xpack_features %}
+xpack.watcher.enabled: false
+{% endif %}
+
+{% if not "ml" in es_xpack_features %}
+xpack.ml.enabled: false
+{% endif %}
+
+{% if not "graph" in es_xpack_features %}
+xpack.graph.enabled: false
+{% endif %}
+{% endif %}

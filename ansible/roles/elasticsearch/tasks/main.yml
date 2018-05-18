@@ -1,0 +1,14 @@
+---
+- include_tasks: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: config.yml
+
+#- include_tasks: install.yml
+#- include_tasks: config.yml
+
+- name: ElasticSearch | Start and enable service
+  service:
+    name: "{{es_service_name}}"
+    state: "{{es_service_state}}"
+    enabled: "{{es_service_enabled}}"

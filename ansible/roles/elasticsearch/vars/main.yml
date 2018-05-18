@@ -1,0 +1,13 @@
+---
+
+# Diretorio no host remoto para a cópia dos pacotes
+elastic_download_packages_dir: "/opt/packages"
+
+#  Informações a respeito do Java
+elastic_jdk_package_name: "jdk-{{ elastic_jdk_version }}-linux-x64.rpm"
+
+
+elastic_build_name: "elastic-{{ elastic_cloud_version }}"
+elastic_package: "{{ elastic_cloud_build_name }}.tgz"
+elastic_url: "http://archive.apache.org/dist/lucene/elastic/{{ elastic_cloud_version }}/{{ elastic_cloud_package }}"
+

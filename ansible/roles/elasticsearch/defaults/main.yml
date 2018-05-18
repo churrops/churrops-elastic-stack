@@ -1,0 +1,28 @@
+---
+es_major_version: "6.x"
+es_version: "6.2.4"
+es_package_name: "elasticsearch"
+es_package_state: "present"
+es_service_name: "elasticsearch"
+es_service_state: "started"
+es_rpm_key: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+es_service_enabled: yes
+es_use_repository: 
+
+es_config: {}
+es_user: "elasticsearch"
+es_group: "elasticsearch"
+es_conf_dir: "/etc/elasticsearch"
+data_dirs: "/elasticsearch/data"
+log_dir: "/var/log/elasticsearch"
+es_max_open_files: 65536
+
+# Path to directory where to store the data (separate multiple locations by comma):
+es_datadirs: /elasticsearch/data
+
+
+es_enable_xpack: false
+es_xpack_features: ["alerting","monitoring","graph","ml","security"]
+
+es_heap_size: "{{ (ansible_memtotal_mb * 0.5) | int }}m"
+es_jvm_custom_parameters: ''

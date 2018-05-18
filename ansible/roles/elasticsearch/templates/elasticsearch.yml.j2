@@ -1,0 +1,54 @@
+# ========================      Managed by Ansible     =========================
+# ======================== Elasticsearch Configuration =========================
+#
+# NOTE: Elasticsearch comes with reasonable defaults for most settings.
+#
+# Please consult the documentation for further information on configuration options:
+# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
+#
+# ---------------------------------- Cluster -----------------------------------
+{% if es_config %}
+{{ es_config | to_nice_yaml }}
+{% endif %}
+
+{% if es_config['cluster.name'] is not defined %}
+cluster.name: elasticsearch
+{% endif %}
+
+{% if es_config['node.name'] is not defined %}
+node.name: {{inventory_hostname}}-{{es_instance_name}}
+{% endif %}
+
+{% if es_config['node.attr.rack'] is defined %}
+node.attr.rack: {{node.attr.rack}}
+{% endif %}
+
+path.logs: {{ log_dir }}
+path.data: {{ es_datadirs }} 
+
+#discovery.zen.minimum_master_nodes: 2
+#discovery.zen.ping.unicast.hosts: ["elasticsearch-1", "elasticsearch-2"]
+
+{% if es_enable_xpack %}
+# ---------------------------------- X-PACK -----------------------------------
+{% if not "security" in es_xpack_features %}
+xpack.security.enabled: false
+{% endif %}
+
+{% if not "monitoring" in es_xpack_features %}
+xpack.monitoring.enabled: false
+{% endif %}
+
+{% if not "alerting" in es_xpack_features %}
+xpack.watcher.enabled: false
+{% endif %}
+
+{% if not "ml" in es_xpack_features %}
+xpack.ml.enabled: false
+{% endif %}
+
+{% if not "graph" in es_xpack_features %}
+xpack.graph.enabled: false
+{% endif %}
+{% endif %}
+

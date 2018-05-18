@@ -1,0 +1,5 @@
+- name: Instalando os pre-requisitos
+  hosts: kibana
+  roles:
+    - roles/kibana
+

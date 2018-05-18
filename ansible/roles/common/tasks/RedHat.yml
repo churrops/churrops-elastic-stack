@@ -1,0 +1,39 @@
+---
+#- name: Upgrade all packages
+#  yum:
+#    name: '*'
+#    state: latest
+
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+  tags: setup
+
+- name: Execute yum-complete-transaction
+  shell: yum-complete-transaction --cleanup-only
+
+- name: Install Base Packages
+  yum:
+    name: "{{item}}"
+    state: installed
+    update_cache: yes
+  with_items:
+    - wget
+    - lsof
+    - vim
+    - nc
+    - net-tools
+    - java-1.8.0-openjdk
+  tags: setup
+
+- name: SELinux | disable
+  selinux:
+    state: disabled
+  tags: setup
+
+- name: SELinux | setenforce 0
+  command: "setenforce 0"
+  ignore_errors: true
+  changed_when: false
+  tags: setup

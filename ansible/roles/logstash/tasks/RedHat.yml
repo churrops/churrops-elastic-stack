@@ -1,0 +1,24 @@
+---
+- name: Logstash | Import GPG KEY 
+  rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+- name: Logstash | Copying file logstash.repo to /etc/yum.repos.d/ 
+  copy:
+    src: logstash.repo
+    dest:  /etc/yum.repos.d/logstash.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Logstash | Install Package
+  yum:
+    name: logstash
+    state: latest
+
+- name: Logstash | Start and enable service
+  service:
+    name: logstash
+    state: started
+    enabled: yes
