@@ -1,0 +1,5 @@
+- name: Example with mem in percent at jinja2 template
+  hosts: localhost
+  gather_facts: true
+  roles:
+  - mem_percent

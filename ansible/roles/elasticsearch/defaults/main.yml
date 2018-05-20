@@ -15,6 +15,7 @@ es_group: "elasticsearch"
 es_conf_dir: "/etc/elasticsearch"
 data_dirs: "/elasticsearch/data"
 log_dir: "/var/log/elasticsearch"
+es_path_plugins: "/usr/share/elasticsearch/plugins"
 es_max_open_files: 65536
 
 # Path to directory where to store the data (separate multiple locations by comma):

@@ -1,0 +1,26 @@
+My 80% of memory it's: {{ ansible_memtotal_mb * 0.8 }}
+
+Quantidade de masters: {{ groups['masters'] |length - 1 }}
+
+{% for host in groups['masters'] %}
+  Servidor: {{host}}
+{% endfor %}
+
+{% for host in groups['masters'] %}
+  [{{ host }}]
+{% endfor %}
+
+discovery.zen.ping.unicast.hosts: [{% for host in groups['masters'] %}
+{% if host == groups['masters'][-1] %}
+   "{{ host }}"
+{% else %}
+ "{{ host }}",
+{% endif%}
+{% endfor %}]
+
+discovery.zen.ping.unicast.hosts: [{% for host in groups['masters'] %}
+{% if host == groups['masters'][-1] %}
+"{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
+
+node.master: {% if host in groups['masters'] %}
+

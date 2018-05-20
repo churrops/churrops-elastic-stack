@@ -5,10 +5,7 @@
 #    state: latest
 
 - name: Install yum-utils
-  yum:
-    name: yum-utils
-    state: present
-  tags: setup
+  yum: name=yum-utils state=present
 
 - name: Execute yum-complete-transaction
   shell: yum-complete-transaction --cleanup-only
@@ -25,15 +22,15 @@
     - nc
     - net-tools
     - java-1.8.0-openjdk
-  tags: setup
 
 - name: SELinux | disable
-  selinux:
-    state: disabled
-  tags: setup
+  selinux: state=disabled
+  tags: base
 
-- name: SELinux | setenforce 0
-  command: "setenforce 0"
-  ignore_errors: true
-  changed_when: false
-  tags: setup
+- name: SELinux | getenforce register 
+  shell: getenforce
+  register: sestatus
+
+- name: SELinux | setenforce 0 if not disabled
+  command: setenforce 0
+  when: sestatus.stdout == "Enforce"

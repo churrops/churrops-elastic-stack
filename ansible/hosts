@@ -1,12 +1,15 @@
 [elasticsearch] 
-172.20.36.87
+192.168.100.107
+
+[elasticsearch-masternodes]
+elastic1
+elastic2
+elastic3
 
 [logstash]
-172.20.36.87
 
 [kibana]
-172.20.36.87
 
 [all:vars]
 ansible_user=root
-ansible_ssh_pass=churrops
+ansible_ssh_private_key_file="~/.ssh/elastic_rsa"

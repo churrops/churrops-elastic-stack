@@ -9,6 +9,7 @@
     state: present
     sysctl_set: yes
   with_items:
-    - {name: vm.swappiness, value: 1 }
+    - {name: vm.swappiness,     value: 1        }
+    - {name: vm.max_map_count,  value: 262144   }
+    - {name: fs.file-max,       value: 262144   }
   tags: setup
-

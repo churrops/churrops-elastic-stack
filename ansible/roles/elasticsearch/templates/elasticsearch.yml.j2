@@ -1,12 +1,9 @@
-# ========================      Managed by Ansible     =========================
-# ======================== Elasticsearch Configuration =========================
-#
-# NOTE: Elasticsearch comes with reasonable defaults for most settings.
-#
-# Please consult the documentation for further information on configuration options:
-# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
-#
-# ---------------------------------- Cluster -----------------------------------
+# =============      Managed by Ansible     ===============
+# =========== Elasticsearch Configuration =================
+
+{% if es_config['node.name'] is not defined %}
+node.name: {{inventory_hostname}}-{{es_instance_name}}
+{% endif %}
 {% if es_config %}
 {{ es_config | to_nice_yaml }}
 {% endif %}
@@ -15,22 +12,20 @@
 cluster.name: elasticsearch
 {% endif %}
 
-{% if es_config['node.name'] is not defined %}
-node.name: {{inventory_hostname}}-{{es_instance_name}}
-{% endif %}
-
 {% if es_config['node.attr.rack'] is defined %}
 node.attr.rack: {{node.attr.rack}}
 {% endif %}
 
-path.logs: {{ log_dir }}
-path.data: {{ es_datadirs }} 
+path.logs: "{{ log_dir }}"
+path.data: "{{es_datadirs}}" 
 
-#discovery.zen.minimum_master_nodes: 2
-#discovery.zen.ping.unicast.hosts: ["elasticsearch-1", "elasticsearch-2"]
+discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternodes'] |length - 1 }} 
+discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternodes'] %}
+{% if host == groups['elasticsearch-masternodes'][-1] %}
+"{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
 
 {% if es_enable_xpack %}
-# ---------------------------------- X-PACK -----------------------------------
+# ------------------------- X-PACK ----------------------
 {% if not "security" in es_xpack_features %}
 xpack.security.enabled: false
 {% endif %}
