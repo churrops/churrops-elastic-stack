@@ -22,5 +22,9 @@ discovery.zen.ping.unicast.hosts: [{% for host in groups['masters'] %}
 {% if host == groups['masters'][-1] %}
 "{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
 
-node.master: {% if host in groups['masters'] %}
-
+## Setting node master ###
+{% if ansible_fqdn groups['masters'] %}
+node_master=true
+{% else %}
+node_master=false
+{% endif %}
