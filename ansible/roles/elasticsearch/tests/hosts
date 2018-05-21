@@ -1,4 +1,9 @@
-[masters]
-master1
-master2
-master3
+[elasticsearch-masternodes]
+es-master1
+es-master2
+es-master3
+
+[elasticsearch-datanodes]
+
+[elasticsearch:children]
+

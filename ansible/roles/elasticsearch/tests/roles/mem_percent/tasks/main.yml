@@ -2,13 +2,9 @@
   debug: msg={{ ansible_memtotal_mb * 0.5 |int }}
 
 - name: Quantidade de hosts no grupo -1
-  debug: msg={{ groups['masters'] |length - 1 }}
+  debug: msg={{ groups['elasticsearch-masternodes'] |length - 1 }}
 
-- name: Quantidade de hosts no grupo -1
-  debug: msg={{ groups['masters'] |length - 1 }}
-
-
-- name: Calc RAM percent in jinja2
-  template:
-    src: mem_percent.j2
-    dest: /tmp/mem_percent.conf
+- name: Template elasticsearch.yml
+  template: 
+    src: elasticsearch.yml.j2 
+    dest: "/tmp/elasticsearch.yml" 

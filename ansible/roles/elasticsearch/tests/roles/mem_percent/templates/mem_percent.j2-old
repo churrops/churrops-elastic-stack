@@ -1,0 +1,22 @@
+My 80% of memory it's: {{ ansible_memtotal_mb * 0.8 }}
+
+#Quantidade de masters: {{ groups['elasticsearch-masternodes'] |length - 1 }}
+#
+#{% for host in groups['elasticsearch-masternodes'] %}
+#  Servidor: {{host}}
+#{% endfor %}
+#
+#{% for host in groups['elasticsearch-masternodes'] %}
+#  [{{ host }}]
+#{% endfor %}
+#
+##discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternodes'] %}
+##{% if host == groups['elasticsearch-masternodes'][-1] %}
+##"{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
+#
+#### Setting node master ###
+##{% if ansible_fqdn groups['masters'] %}
+##node_master=true
+##{% else %}
+##node_master=false
+##{% endif %}

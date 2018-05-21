@@ -1,0 +1,14 @@
+# =============      Managed by Ansible     ===============
+# =========== Elasticsearch Configuration =================
+
+discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternodes'] |length - 1 }} 
+discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternodes'] %}
+{% if host == groups['elasticsearch-masternodes'][-1] %}
+"{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
+
+#### Setting node master ###
+{% if 'elasticsearch-masternodes' in group_names and ansible_fqdn in groups['elasticsearch-masternodes'] %}
+node_master: true
+{% else %}
+node_master: false
+{% endif %}
