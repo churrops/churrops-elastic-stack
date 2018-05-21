@@ -1,0 +1,11 @@
+
+elasticsearch	= true|false 
+masternode	= true|false
+datanode	= true|false
+logstash	= true|false
+terraform	= true|false
+environment	= production|staging|development
+environment-short = prd|stg|dev
+
+ami centos:
+CentOS 7 (x86_64) - with Updates HVM
