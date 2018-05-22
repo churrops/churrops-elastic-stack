@@ -1,0 +1,25 @@
+---
+#if es_plugins_reinstall is set to true we (re)install ALL plugins
+- name: set fact plugins_to_install to es_plugins
+  set_fact: 
+    plugins_to_install: "{{ es_plugins | json_query('[*].plugin') | default([]) }}"
+  when: es_plugins_reinstall
+
+#if the plugins listed are different than those requested, we install those not installed but listed in the config
+- name: set fact to plugins_to_install to those in es_config but not installed
+  set_fact: 
+    plugins_to_install: "{{ es_plugins | json_query('[*].plugin') | difference(installed_plugins.stdout_lines) | default([]) }}"
+  when: not es_plugins_reinstall
+
+#- name: Verify if plugins installed 
+#  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin list {{ item.plugin }}  |grep {{ item.plugin }}  |head -n1"
+#  register: plugin_result
+#  when: item.plugin in plugins_to_install
+
+- name: Install elasticsearch plugins
+  shell: "/usr/share/elasticsearch/bin/elasticsearch-plugin install {{ item.plugin }} --batch --silent"
+  with_items: "{{ es_plugins }}"
+  when: item.plugin in plugins_to_install and plugin_result.rc == x-pack
+  notify: restart elasticsearch
+  retries: 5
+  delay: 5

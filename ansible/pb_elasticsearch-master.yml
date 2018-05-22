@@ -15,3 +15,7 @@
         bootstrap.memory_lock: false,
         }
     }
+  vars: 
+    es_plugins:
+      - plugin: ingest-geoip
+      - plugin: x-pack

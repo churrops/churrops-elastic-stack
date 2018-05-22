@@ -2,7 +2,7 @@
 - include_tasks: RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- name: /etc/sysctl.conf | Set swappiness to 1
+- name: /etc/sysctl.conf | Set swappiness, file-max e max_map_count
   sysctl:
     name: "{{item.name}}"
     value: "{{item.value}}"

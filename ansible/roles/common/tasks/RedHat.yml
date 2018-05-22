@@ -23,13 +23,12 @@
     - net-tools
     - java-1.8.0-openjdk
 
-- name: SELinux | disable
-  selinux: state=disabled
-  tags: base
-
-- name: SELinux | getenforce register 
+- name: SELinux | getenforce register
   shell: getenforce
   register: sestatus
+
+- name: SELinux | disable
+  selinux: state=disabled
 
 - name: SELinux | setenforce 0 if not disabled
   command: setenforce 0
