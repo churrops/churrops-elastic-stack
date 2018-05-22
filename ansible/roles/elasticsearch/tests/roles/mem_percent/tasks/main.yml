@@ -2,7 +2,10 @@
   debug: msg={{ ansible_memtotal_mb * 0.5 |int }}
 
 - name: Quantidade de hosts no grupo -1
-  debug: msg={{ groups['elasticsearch-masternodes'] |length - 1 }}
+  debug: msg={{ groups['elasticsearch-masternode'] |length - 1 }}
+
+- name: ipv4 address
+  debug: msg={{ ansible_all_ipv4_addresses }}
 
 - name: Template elasticsearch.yml
   template: 

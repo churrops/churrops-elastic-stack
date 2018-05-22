@@ -1,14 +1,25 @@
 # =============      Managed by Ansible     ===============
 # =========== Elasticsearch Configuration =================
 
-discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternodes'] |length - 1 }} 
-discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternodes'] %}
-{% if host == groups['elasticsearch-masternodes'][-1] %}
+discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternode'] |length - 1 }} 
+discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternode'] %}
+{% if host == groups['elasticsearch-masternode'][-1] %}
 "{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
 
 #### Setting node master ###
-{% if 'elasticsearch-masternodes' in group_names and ansible_fqdn in groups['elasticsearch-masternodes'] %}
+{% if 'elasticsearch-masternode' in group_names and ansible_fqdn in groups['elasticsearch-masternode'] %}
 node_master: true
 {% else %}
 node_master: false
+{% endif %}
+
+{% if 'elasticsearch-masternode' in group_names and ansible_fqdn or ansible_default_ipv4.address in groups['elasticsearch-masternode'] %}
+node.master: true
+{% else %}
+node.master: false
+{% endif %}
+{% if 'elasticsearch-datanode' in group_names and ansible_fqdn or ansible_default_ipv4.address in groups['elasticsearch-datanode'] %}
+node.data: true
+{% else %}
+node.data: false
 {% endif %}

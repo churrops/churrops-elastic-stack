@@ -1,9 +1,10 @@
-[elasticsearch-masternodes]
+[elasticsearch-masternode]
 es-master1
 es-master2
 es-master3
 
-[elasticsearch-datanodes]
+[elasticsearch-datanode]
+172.20.36.58
 
 [elasticsearch:children]
 

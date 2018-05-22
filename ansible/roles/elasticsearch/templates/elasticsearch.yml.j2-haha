@@ -1,9 +1,6 @@
 # =============      Managed by Ansible     ===============
 # =========== Elasticsearch Configuration =================
-{% if es_config['cluster.name'] is not defined %}
-cluster.name: elasticsearch
-{% endif %}
-#--
+
 {% if es_config['node.name'] is not defined %}
 node.name: {{inventory_hostname}}-{{es_instance_name}}
 {% endif %}
@@ -11,16 +8,10 @@ node.name: {{inventory_hostname}}-{{es_instance_name}}
 {{ es_config | to_nice_yaml }}
 {% endif %}
 
-{% if 'elasticsearch-masternode' in group_names and ansible_fqdn or ansible_default_ipv4.address in groups['elasticsearch-masternode'] %}
-node.master: true
-{% else %}
-node.master: false
+{% if es_config['cluster.name'] is not defined %}
+cluster.name: elasticsearch
 {% endif %}
-{% if 'elasticsearch-datanode' in group_names and ansible_fqdn or ansible_default_ipv4.address in groups['elasticsearch-datanode'] %}
-node.data: true
-{% else %}
-node.data: false
-{% endif %}
+
 {% if es_config['node.attr.rack'] is defined %}
 node.attr.rack: {{node.attr.rack}}
 {% endif %}
@@ -28,9 +19,9 @@ node.attr.rack: {{node.attr.rack}}
 path.logs: "{{ log_dir }}"
 path.data: "{{es_datadirs}}" 
 
-discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternode'] |length - 1 }} 
-discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternode'] %}
-{% if host == groups['elasticsearch-masternode'][-1] %}
+discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternodes'] |length - 1 }} 
+discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternodes'] %}
+{% if host == groups['elasticsearch-masternodes'][-1] %}
 "{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
 
 {% if es_enable_xpack %}
