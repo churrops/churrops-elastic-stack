@@ -4,6 +4,7 @@
 cluster.name: elasticsearch
 {% endif %}
 #--
+http.host: "0.0.0.0"
 {% if es_config['node.name'] is not defined %}
 node.name: {{inventory_hostname}}-{{es_instance_name}}
 {% endif %}

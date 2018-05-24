@@ -1,16 +1,17 @@
 [elasticsearch] 
 
 [elasticsearch-masternode]
-172.20.36.144
+34.229.211.136
 
 [elasticsearch-datanode]
-172.20.36.144
+34.229.211.136
 
 [logstash]
 
 [kibana]
 
 [all:vars]
-ansible_user=root
-ansible_ssh_private_key_file="~/.ssh/elastic_rsa"
+ansible_user=centos
+ansible_ssh_private_key_file="~/.ssh/sshkey-neoassist-automacao.pem"
 ansible_ssh_pass=churrops
+ansible_become=true

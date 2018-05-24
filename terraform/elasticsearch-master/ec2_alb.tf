@@ -2,7 +2,8 @@ resource "aws_alb" "loadbalancer" {
   name = "alb-${var.tag_name}"
   internal = false
   security_groups = ["${module.loadbalancer_sg.sg_id}"]
-  subnets = ["subnet-0d2501ede51cebc3f", "subnet-0dde555767bd2a493"]
+  subnets = ["subnet-0884729b2cc27a1b0", "subnet-0b095f2b17e6b5c90", "subnet-099afcd7f3d53bf58"]
+  #subnets = ["${split(",", data.terraform_remote_state.vpc.public_subnets)}"]
   enable_deletion_protection = false
   lifecycle {
     create_before_destroy = true

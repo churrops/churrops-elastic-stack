@@ -1,1 +1,7 @@
 pip install boto --upgrade
+
+export ANSIBLE_INVENTORY=$(pwd)/ec2.py 
+export EC2_INI_PATH=$(pwd)/ec2.ini
+
+export AWS_DEFAULT_REGION=us-east-1; export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile neoassist-dev); export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile neoassist-dev); export ANSIBLE_INVENTORY=$(pwd)/ec2.ini; export ANSIBLE_HOSTS=$(pwd)/ec2.py
+
