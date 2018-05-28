@@ -1,13 +1,15 @@
 ---
 - name: Instalando os pre-requisitos
-  hosts: all
+  hosts:
+    - elasticsearch-masternode
+    - elasticsearch-datanode
   roles:
     - roles/common
 
 - name: Install ElasticSearch 
   hosts: elasticsearch-masternode
   roles:
-    - { role: roles/elasticsearch, es_instance_name: "node1",
+    - { role: "roles/elasticsearch", es_instance_name: "masternode",
     es_config: {
         cluster.name: "elastichurrops",
         http.port: 9200,
@@ -15,7 +17,15 @@
         bootstrap.memory_lock: false,
         }
     }
-#  vars: 
-#    es_plugins:
-#      - plugin: ingest-geoip
-#      - plugin: x-pack
+
+- name: Install ElasticSearch
+  hosts: elasticsearch-datanode
+  roles:
+    - { role: "roles/elasticsearch", es_instance_name: "datanode",
+    es_config: {
+        cluster.name: "elastichurrops",
+        http.port: 9200,
+        transport.tcp.port: 9300,
+        bootstrap.memory_lock: false,
+        }
+    }
