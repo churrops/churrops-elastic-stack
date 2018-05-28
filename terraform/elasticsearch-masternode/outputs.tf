@@ -18,7 +18,7 @@ output "instance_public_dns" {
   value       = "${module.ec2.public_dns[0]}"
 }
 
-output "this_security_group_id" {
-  description = "The ID of the security group"
-  value       = "${element(concat(aws_security_group.this.*.id, list("")), 0)}"
-}
+#output "this_security_group_id" {
+#  description = "The ID of the security group"
+#  value       = "${element(concat(aws_security_group.this.*.id, list("")), 0)}"
+#}
