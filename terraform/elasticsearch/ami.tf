@@ -1,3 +1,4 @@
+/* ## AMI Centos 7 ## */
 data "aws_ami" "centos" {
   owners      = ["679593333241"]
   most_recent = true
@@ -18,6 +19,7 @@ data "aws_ami" "centos" {
   }
 }
 
+/* ## AMI Amazon Linux ## */
 data "aws_ami" "amazon_linux" {
   most_recent = true
 
@@ -38,6 +40,7 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+/* ## AMI Ubuntu ## */
 data "aws_ami" "ubuntu" {
     most_recent = true
 
