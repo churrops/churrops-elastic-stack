@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "terraform-state-laboratorio-dev"
+    bucket  = "${var.bucket_name}"
     key     = "elasticsearch/elasticsearch.tfstate"
   }
 }
