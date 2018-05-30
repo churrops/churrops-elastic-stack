@@ -13,8 +13,6 @@
     es_config: {
         cluster.name: "elastichurrops",
         http.port: 9200,
-        network.host: "0.0.0.0"
-        http.host: "0.0.0.0"
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,
         }
@@ -27,8 +25,6 @@
     es_config: {
         cluster.name: "elastichurrops",
         http.port: 9200,
-        network.host: "0.0.0.0"
-        http.host: "0.0.0.0"
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,
         }

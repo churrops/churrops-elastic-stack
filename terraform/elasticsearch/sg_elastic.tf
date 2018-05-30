@@ -17,13 +17,6 @@ resource "aws_security_group" "sg_elasticsearch" {
     self	= "true"
   }
 
-  ingress {
-    from_port   = "22"
-    to_port     = "22"
-    protocol    = "tcp"
-    self	= "true"
-  }
-
    egress {
     from_port       = 0
     to_port         = 0
@@ -32,7 +25,7 @@ resource "aws_security_group" "sg_elasticsearch" {
   }
 
   tags {
-    Name		 	= "sg_${var.tag_application}"
+    Name		 	= "sg-${var.tag_application}"
     elasticsearch	      	= "true"
     terraform		        = "true"
     environment         	= "${var.tag_environment}"

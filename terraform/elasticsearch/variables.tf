@@ -29,3 +29,11 @@ variable "ebs_device_name"		{ default = "/dev/sde" }
 variable "ebs_volume_size"		{ default = "40" }
 variable "ebs_volume_type"		{ default = "gp2" }
 variable "ebs_delete_on_termination"	{ default = "true" }
+
+variable "azs" {
+    type = "map"
+    default = {
+        "ap-southeast-2" = "ap-southeast-2a,ap-southeast-2b,ap-southeast-2c"
+        "us-east-1"      = "us-east-1a,us-east-1b,us-east-1c"
+    }
+}
