@@ -1,4 +1,5 @@
 .terraform 
 variables-neo.tf
 *.tfstate
+terraform.tfvars
 

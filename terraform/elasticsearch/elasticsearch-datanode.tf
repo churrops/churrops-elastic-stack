@@ -8,7 +8,8 @@ module "ec2-dn" {
   key_name		        = "${var.sshkey_name}"
   user_data       	        = "${file("user-data.sh")}"
   subnet_id                  	= "${element(data.aws_subnet_ids.all.ids, 0)}"
-  vpc_security_group_ids      	= ["${module.security_group.this_security_group_id}"]
+  vpc_security_group_ids        = ["${aws_security_group.sg_elasticsearch.id}"]
+#  vpc_security_group_ids      	= ["${module.security_group.this_security_group_id}"]
   associate_public_ip_address 	= "${var.associate_public_ip_address}"
   disable_api_termination	= "${var.disable_api_termination}"
 

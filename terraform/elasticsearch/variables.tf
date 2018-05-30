@@ -1,4 +1,5 @@
-variable "bucket_name" 		        { default = "" }
+variable "bucket_name_vpc" 		{ default = "" }
+variable "bucket_name_elastic" 		{ default = "" }
 variable "sshkey_name"		        { default = "" } 
 variable "my_public_ip"		        { default = "" }
 variable "associate_public_ip_address"	{ default = "true" }
