@@ -20,6 +20,7 @@ es_max_open_files: 65536
 # Path to directory where to store the data (separate multiple locations by comma):
 es_datadirs: /elasticsearch/data
 es_plugins_reinstall: true	
+es_install_x-pack: true
 es_enable_xpack: false
 es_xpack_features: ["alerting","monitoring","graph","ml","security"]
 

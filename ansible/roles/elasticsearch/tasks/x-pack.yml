@@ -1,0 +1,15 @@
+---
+- name: Install elasticsearch X-PACK plugin
+  elasticsearch_plugin:
+    state: present
+    name: x-pack
+
+###https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-passwords.html
+###
+###bin/x-pack/setup-passwords auto|interactive
+###[-b, --batch] [-h, --help] [-E <KeyValuePair>]
+###[-s, --silent] [-u, --url "<URL>"] [-v, --verbose]
+###
+###- name: 
+###  shell: /usr/share/elasticsearch/bin/x-pack/setup-passwords interactive
+###
