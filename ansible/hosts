@@ -1,8 +1,6 @@
 [elasticsearch-masternode]
-ec2-54-208-7-53.compute-1.amazonaws.com
 
 [elasticsearch-datanode]
-ec2-34-229-38-225.compute-1.amazonaws.com
 
 [logstash]
 
