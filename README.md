@@ -4,13 +4,13 @@ Created by: Rodrigo Floriano de Souza <floriancomercial@gmail.com>
 
 # TERRAFORM
 
-## PRE REQUISITES
+## Pre-requisites
 
 	- git 2.7.x or later
 	- aws-cli 1.14.x or later
 	- terraform v0.10.x or later
 
-## FEATURES
+## Features
 
 	- 1 AWS ELB for access to Elasticsearch API in Port 9200
 	- 1 AWS Security Group for Loadbalancer
@@ -20,7 +20,7 @@ Created by: Rodrigo Floriano de Souza <floriancomercial@gmail.com>
 
 ## HOW TO EXECUTE
 
-### INSTALL AND CONFIGURE AWS CLI 
+### Install and configure awscli
 
 ```
 aws configure --profile acme
@@ -30,13 +30,13 @@ export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile acme)
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile acme)
 ```
 
-### DOWNLOAD THE PROJECT
+### Download the project
 
 ```
 git clone https://github.com/churrops/churrops-elastic-stack.git
 ```
 
-### CONFIGURE THE VARIABLES 
+### Configuration of Variables 
 
 ```
 cd terraform/elasticsearch/
@@ -73,12 +73,10 @@ ebs_volume_type			= "gp2"
 ebs_delete_on_termination	= "true"
 ```
 
-### RUN TERRAFORM 
+### Run Terraform
 
 ```
 terraform init
 terraform plan
 terraform apply
 ```
-
-mkdir 
