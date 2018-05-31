@@ -1,7 +1,8 @@
 # Ansible ElasticSearch - EM DESENVOLVIMENTO
 
 <strong>Author:</strong> Rodrigo Floriano de Souza <floriancomercial@gmail.com>
-<strong>Blog:</strong> 
+
+<strong>Blog: https://churrops.io</strong> 
 
 # TERRAFORM
 
