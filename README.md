@@ -12,6 +12,10 @@
 - aws-cli 1.14.x or later
 - terraform v0.10.x or later
 
+### Elasticsearch Architecture
+
+![Steps](images/elasticsearch_architecture_v1.0.png)
+
 ## Features
 
 - 1 AWS ELB for access to Elasticsearch API in Port 9200
