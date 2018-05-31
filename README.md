@@ -12,11 +12,11 @@ Created by: Rodrigo Floriano de Souza <floriancomercial@gmail.com>
 
 ## Features
 
-	- 1 AWS ELB for access to Elasticsearch API in Port 9200
-	- 1 AWS Security Group for Loadbalancer
-	- 1 AWS Security Group for EC2 Instances
-	- 1 or more AWS EC2 Instances "elasticsearch-masternode"
-	- 1 or more AWS EC2 Instances "elasticsearch-datanode" with additional EBS Disk for data.
+- 1 AWS ELB for access to Elasticsearch API in Port 9200
+- 1 AWS Security Group for Loadbalancer
+- 1 AWS Security Group for EC2 Instances
+- 1 or more AWS EC2 Instances "elasticsearch-masternode"
+- 1 or more AWS EC2 Instances "elasticsearch-datanode" with additional EBS Disk for data.
 
 ## HOW TO EXECUTE
 
