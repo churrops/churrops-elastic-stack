@@ -1,14 +1,15 @@
 # Ansible ElasticSearch - EM DESENVOLVIMENTO
 
-Created by: Rodrigo Floriano de Souza <floriancomercial@gmail.com>
+<strong>Author:</strong> Rodrigo Floriano de Souza <floriancomercial@gmail.com>
+<strong>Blog:</strong> 
 
 # TERRAFORM
 
 ## Pre-requisites
 
-	- git 2.7.x or later
-	- aws-cli 1.14.x or later
-	- terraform v0.10.x or later
+- git 2.7.x or later
+- aws-cli 1.14.x or later
+- terraform v0.10.x or later
 
 ## Features
 
