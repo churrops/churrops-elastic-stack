@@ -1,5 +1,5 @@
 # Elasticsearch Cluster Automated
-# ----> EM DESENVOLVIMENTO <----#
+# ------> DEVELOPING <------
 
 <strong>Author:</strong> Rodrigo Floriano de Souza <floriancomercial@gmail.com>
 
