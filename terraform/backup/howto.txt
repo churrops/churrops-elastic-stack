@@ -1,0 +1,26 @@
+
+Create Bucket: elasticsearch-backup-teste
+
+Create policy: 
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::elasticsearch-backup-teste"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": ["arn:aws:s3:::elasticsearch-backup-teste/*"]
+    }
+  ]
+}
+
+Create Role and Attach Policy
