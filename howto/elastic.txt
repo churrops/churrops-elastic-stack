@@ -62,6 +62,8 @@ bin/x-pack/setup-passwords auto|interactive
 [-b, --batch] [-h, --help] [-E <KeyValuePair>]
 [-s, --silent] [-u, --url "<URL>"] [-v, --verbose]
 
+
 /usr/share/elasticsearch/bin/x-pack/setup-passwords interactive
+echo "y" | /usr/share/elasticsearch/bin/x-pack/setup-passwords auto
 
 vim 

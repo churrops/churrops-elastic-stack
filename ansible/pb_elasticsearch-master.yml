@@ -1,11 +1,11 @@
 ---
-#- name: Instalando os pre-requisitos
-#  hosts:
-#    - elasticsearch-masternode
-#    - elasticsearch-datanode
-#  roles:
-#    - roles/common
-#
+- name: Instalando os pre-requisitos
+  hosts:
+    - elasticsearch-masternode
+    - elasticsearch-datanode
+  roles:
+    - roles/common
+
 - name: Install ElasticSearch 
   hosts: elasticsearch-masternode
   roles:

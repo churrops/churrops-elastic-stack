@@ -4,12 +4,12 @@
     state: present
     name: x-pack
 
-###https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-passwords.html
-###
-###bin/x-pack/setup-passwords auto|interactive
-###[-b, --batch] [-h, --help] [-E <KeyValuePair>]
-###[-s, --silent] [-u, --url "<URL>"] [-v, --verbose]
-###
-###- name: 
-###  shell: /usr/share/elasticsearch/bin/x-pack/setup-passwords interactive
-###
+- name: Set passwords for reserved users elastic,kibana,logstash_system
+  shell: echo "y" | /usr/share/elasticsearch/bin/x-pack/setup-passwords auto
+  register: elastic_stack_passwords
+  ignore_errors: True
+
+- name: Display passwords in playbook output
+  debug: 
+    msg: "{{elastic_stack_passwords.stdout}}"
+  when: elastic_stack_passwords.changed

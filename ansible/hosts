@@ -1,13 +1,15 @@
 [elasticsearch-masternode]
+192.168.100.103
 
 [elasticsearch-datanode]
+192.168.100.103
 
 [logstash]
 
 [kibana]
 
 [all:vars]
-ansible_user=centos
-ansible_ssh_private_key_file=""
-ansible_ssh_pass=churrops
+ansible_user=root
+ansible_ssh_private_key_file="/Users/rodrigo/.ssh/elastic_rsa"
+#ansible_ssh_pass=churrops
 ansible_become=true
