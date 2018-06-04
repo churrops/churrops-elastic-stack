@@ -1,5 +1,5 @@
 # Elasticsearch Cluster Automated
-# ------> DEVELOPING <------
+# -----> DEVELOPING <-----
 
 <strong>Author:</strong> Rodrigo Floriano de Souza <floriancomercial@gmail.com>
 
@@ -13,17 +13,22 @@
 - aws-cli 1.14.x or later
 - terraform v0.10.x or later
 
-### Elasticsearch Architecture
-
-![Steps](images/elasticsearch_architecture_v1.0.png)
-
-## Features
+### Features
 
 - 1 AWS ELB for access to Elasticsearch API in Port 9200
 - 1 AWS Security Group for Loadbalancer
 - 1 AWS Security Group for EC2 Instances
 - 1 or more AWS EC2 Instances "elasticsearch-masternode"
 - 1 or more AWS EC2 Instances "elasticsearch-datanode" with additional EBS Disk for data.
+
+### To do Features
+
+- 1 Bucket 33 for Backup
+- IAM Role, Policy and instance profile attached in ec2 instance for bucket access
+
+### Elasticsearch Architecture
+
+![Steps](images/elasticsearch_architecture_v1.0.png)
 
 ## HOW TO EXECUTE
 
@@ -78,6 +83,19 @@ ebs_device_name			= "/dev/sde"
 ebs_volume_size			= "40"
 ebs_volume_type			= "gp2"
 ebs_delete_on_termination	= "true"
+```
+
+For use remote state in AWS S3, create file remote_state.tf in elasticsearch directory  
+
+```
+vim terraform/elasticsearch/remote_state.tf
+
+terraform {
+  backend "s3" {
+    bucket  = "AWS S3 BUCKET NAME FOR TERRAFORM STATE"
+    key     = "elasticsearch/elasticsearch.tfstate"
+  }
+}
 ```
 
 ### Run Terraform
