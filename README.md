@@ -23,7 +23,7 @@
 
 ### To do Features
 
-- 1 Bucket 33 for Backup
+- 1 Bucket S3 for Backup
 - IAM Role, Policy and instance profile attached in ec2 instance for bucket access
 
 ### Elasticsearch Architecture
