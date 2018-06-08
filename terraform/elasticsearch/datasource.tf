@@ -6,14 +6,13 @@ data "aws_subnet_ids" "all" {
   vpc_id = "${data.aws_vpc.default.id}"
 }
 
-
-data "terraform_remote_state" "vpc" {
-  backend = "s3"
-  config = {
-    bucket  = "${var.bucket_name_vpc}"
-    key     = "vpc/vpc.tfstate"
-  }
-}
+#data "terraform_remote_state" "vpc" {
+#  backend = "s3"
+#  config = {
+#    bucket  = "${var.bucket_name_vpc}"
+#    key     = "vpc/vpc.tfstate"
+#  }
+#}
 
 data "terraform_remote_state" "datanode" {
   backend = "s3"

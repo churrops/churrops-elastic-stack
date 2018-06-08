@@ -1,9 +1,4 @@
 ---
-#- name: Upgrade all packages
-#  yum:
-#    name: '*'
-#    state: latest
-
 - name: Install yum-utils
   yum: name=yum-utils state=present
 
@@ -33,3 +28,16 @@
 - name: SELinux | setenforce 0 if not disabled
   command: setenforce 0
   when: sestatus.stdout == "Enforce"
+
+- name: Repository | Import GPG KEY 
+  rpm_key:
+    state: present
+    key: "{{es_rpm_key}}"
+
+- name: Repository | Copying file elasticsearch.repo to /etc/yum.repos.d/ 
+  template:
+    src: elasticsearch.repo.j2
+    dest: "/etc/yum.repos.d/elasticsearch-{{es_major_version}}.repo"
+    owner: root
+    group: root
+    mode: 0644

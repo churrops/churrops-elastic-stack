@@ -4,17 +4,45 @@ resource "aws_security_group" "sg-elb-elasticsearch" {
   vpc_id      = "${data.aws_vpc.default.id}"
 
   ingress {
-    from_port   = "9200"
-    to_port     = "9200"
+    from_port   = "80"
+    to_port     = "80"
     protocol    = "tcp"
     cidr_blocks = ["${var.my_public_ip}"]
   }
 
   ingress {
-    from_port   	= "9200"
-    to_port     	= "9200"
+    from_port   = "443"
+    to_port     = "443"
+    protocol    = "tcp"
+    cidr_blocks = ["${var.my_public_ip}"]
+  }
+
+  ingress {
+    from_port   = "5601"
+    to_port     = "5601"
+    protocol    = "tcp"
+    cidr_blocks = ["${var.my_public_ip}"]
+  }
+
+  ingress {
+    from_port   	= "80"
+    to_port     	= "80"
     protocol    	= "tcp"
     security_groups 	= ["${aws_security_group.sg_elasticsearch.id}"]
+  }
+
+  ingress {
+    from_port           = "443"
+    to_port             = "443"
+    protocol            = "tcp"
+    security_groups     = ["${aws_security_group.sg_elasticsearch.id}"]
+  }
+
+  ingress {
+    from_port           = "8200"
+    to_port             = "8200"
+    protocol            = "tcp"
+    security_groups     = ["${aws_security_group.sg_elasticsearch.id}"]
   }
 
    egress {

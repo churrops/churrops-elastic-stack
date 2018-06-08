@@ -17,8 +17,8 @@
 
 - include_tasks: config.yml
 
-- include_tasks: x-pack.yml
-  when: es_install_x-pack == 'true'
+#- include_tasks: x-pack.yml
+#  when: es_install_x-pack == 'true'
 
 - name: ElasticSearch | Start and enable service
   service:

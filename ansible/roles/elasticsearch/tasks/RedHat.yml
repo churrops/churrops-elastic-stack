@@ -1,20 +1,19 @@
 ---
-- name: ElasticSearch | Import GPG KEY 
-  rpm_key:
-    state: present
-    key: "{{es_rpm_key}}"
-
-- name: ElasticSearch | Copying file elasticsearch.repo to /etc/yum.repos.d/ 
-  template:
-    src: elasticsearch.repo.j2
-    dest: "/etc/yum.repos.d/elasticsearch-{{es_major_version}}.repo"
-    owner: root
-    group: root
-    mode: 0644
+#- name: ElasticSearch | Import GPG KEY 
+#  rpm_key:
+#    state: present
+#    key: "{{es_rpm_key}}"
+#
+#- name: ElasticSearch | Copying file elasticsearch.repo to /etc/yum.repos.d/ 
+#  template:
+#    src: elasticsearch.repo.j2
+#    dest: "/etc/yum.repos.d/elasticsearch-{{es_major_version}}.repo"
+#    owner: root
+#    group: root
+#    mode: 0644
 
 - name: ElasticSearch | Install Package
   yum:
     name: "{{es_package_name}}-{{es_version}}"
     state: "{{es_package_state}}"
   register: redhat_elasticsearch_install_from_repo
-

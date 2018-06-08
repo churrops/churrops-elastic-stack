@@ -17,6 +17,20 @@ resource "aws_security_group" "sg_elasticsearch" {
     self	= "true"
   }
 
+  ingress {
+    from_port   = "5601"
+    to_port     = "5601"
+    protocol    = "tcp"
+    self        = "true"
+  }
+
+  ingress {
+    from_port   = "8200"
+    to_port     = "8200"
+    protocol    = "tcp"
+    self        = "true"
+  }
+
    egress {
     from_port       = 0
     to_port         = 0

@@ -1,0 +1,11 @@
+---
+- name: APM-Server | Install Package
+  yum:
+    name: apm-server
+    state: present
+
+- name: APM-Server | Start and enable service
+  service:
+    name: apm-server
+    state: started
+    enabled: yes

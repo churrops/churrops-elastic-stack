@@ -17,6 +17,20 @@ resource "aws_elb" "elb-elasticsearch" {
     lb_protocol       = "http"
   }
 
+  listener {
+    instance_port     = "5601"
+    instance_protocol = "http"
+    lb_port           = "5601"
+    lb_protocol       = "http"
+  }
+
+  listener {
+    instance_port     = "8200"
+    instance_protocol = "http"
+    lb_port           = "8200"
+    lb_protocol       = "http"
+  }
+
   health_check {
     target              = "HTTP:9200/_cluster/health"
     healthy_threshold   = 10

@@ -1,15 +1,16 @@
 [elasticsearch-masternode]
-192.168.100.103
+ec2-54-197-216-161.compute-1.amazonaws.com
 
 [elasticsearch-datanode]
-192.168.100.103
+ec2-54-165-53-62.compute-1.amazonaws.com
 
 [logstash]
 
 [kibana]
+ec2-54-197-216-161.compute-1.amazonaws.com
 
 [all:vars]
-ansible_user=root
-ansible_ssh_private_key_file="/Users/rodrigo/.ssh/elastic_rsa"
+ansible_user=centos
+ansible_ssh_private_key_file="~/.ssh/sshkey-neoassist-automacao.pem"
 #ansible_ssh_pass=churrops
 ansible_become=true

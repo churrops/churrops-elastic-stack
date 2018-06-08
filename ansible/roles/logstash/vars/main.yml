@@ -1,0 +1,5 @@
+ls_user: logstash
+ls_group: logstash
+ls_service_name: logstash
+ls_service_state: started
+ls_enabled: yes

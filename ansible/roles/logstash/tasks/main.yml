@@ -2,4 +2,11 @@
 - include_tasks: RedHat.yml
   when: ansible_os_family == 'RedHat'
 #- include_tasks: install.yml
-#- include_tasks: config.yml
+- include_tasks: config.yml
+
+- name: Logstash | Start and enable service
+  service:
+    name: logstash
+    state: started
+    enabled: yes
+

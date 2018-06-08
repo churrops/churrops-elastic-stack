@@ -11,7 +11,7 @@
   roles:
     - { role: "roles/elasticsearch", es_instance_name: "masternode",
     es_config: {
-        cluster.name: "elastichurrops",
+        cluster.name: "neo-elasticsearch-apm",
         http.port: 9200,
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,
@@ -23,7 +23,7 @@
   roles:
     - { role: "roles/elasticsearch", es_instance_name: "datanode",
     es_config: {
-        cluster.name: "elastichurrops",
+        cluster.name: "neo-elasticsearch-apm",
         http.port: 9200,
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,

@@ -1,0 +1,5 @@
+- name: Instalando o Logstash
+  hosts: logstash
+  roles:
+    - roles/logstash
+
