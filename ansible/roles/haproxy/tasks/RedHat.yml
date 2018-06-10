@@ -1,0 +1,18 @@
+---
+- name: Installa Haproxy
+  yum:
+    name: haproxy
+    state: latest
+
+- name: Copy Configuration File - elasticsearch.yml
+  template:
+    src: elasticsearch.yml.j2
+    dest: "{{es_conf_dir}}/elasticsearch.yml"
+    owner: "{{ es_user }}"
+    group: "{{ es_group }}"
+    mode: 0644
+    force: yes
+  register: system_change
+  notify: restart elasticsearch
+
+

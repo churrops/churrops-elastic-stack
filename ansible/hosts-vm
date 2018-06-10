@@ -1,20 +1,20 @@
 [elasticsearch-masternode]
-192.168.15.152
+192.168.100.100
 
 [apm-server]
-192.168.15.152
+192.168.100.100
 
 [elasticsearch-datanode]
-192.168.15.152
+192.168.100.100
 
 [logstash]
-192.168.15.152
+192.168.100.100
 
 [kibana]
-192.168.15.152
+192.168.100.100
 
 [all:vars]
 ansible_user=root
 #ansible_ssh_private_key_file="~/.ssh/sshkey-neoassist-automacao.pem"
-#ansible_ssh_pass=Neo@ssit
+ansible_ssh_pass=template
 #ansible_become=true

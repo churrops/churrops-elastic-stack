@@ -1,0 +1,20 @@
+---
+- name: Installa Haproxy
+  yum:
+    name: haproxy
+    state: latest
+  when: ansible_os_family == 'RedHat'
+
+- name: Copy Configuration File - haproxy.cfg
+  template:
+    src: haproxy.cfg.j2
+    dest: "/etc/haproxy/haproxy.cfg"
+    mode: 0644
+    force: yes
+  notify: restart haproxy
+
+- name: HAProxy | Start and enable service
+  service:
+    name: "haproxy"
+    state: "started"
+    enabled: "yes"
