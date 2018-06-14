@@ -1,9 +1,4 @@
 ---
-- name: Install elasticsearch X-PACK plugin
-  elasticsearch_plugin:
-    state: present
-    name: x-pack
-
 - name: Check if Elasticsearch not have autenthication 
   uri:
     url: http://localhost:9200
@@ -11,7 +6,7 @@
   ignore_errors: True
 
 - name: Set passwords for reserved users elastic,kibana,logstash_system
-  shell: echo "y" | /usr/share/elasticsearch/bin/x-pack/setup-passwords auto
+  shell: echo "y" | /usr/share/elasticsearch/bin/elasticsearch-setup-passwords auto
   register: elastic_stack_passwords
   when: test_elastic_url.status != 200
   ignore_errors: True

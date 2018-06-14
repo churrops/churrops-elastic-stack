@@ -1,5 +1,0 @@
----
-- name: Install APM Server
-  hosts: apm-server
-  roles:
-    - { role: "roles/apm-server" }

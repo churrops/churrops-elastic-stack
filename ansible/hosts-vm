@@ -1,20 +1,20 @@
 [elasticsearch-masternode]
-192.168.100.100
+192.168.100.111
 
 [apm-server]
-192.168.100.100
+192.168.100.111
 
 [elasticsearch-datanode]
-192.168.100.100
+192.168.100.111
 
 [logstash]
-192.168.100.100
+192.168.100.111
 
 [kibana]
-192.168.100.100
+192.168.100.111
 
 [all:vars]
 ansible_user=root
-#ansible_ssh_private_key_file="~/.ssh/sshkey-neoassist-automacao.pem"
-ansible_ssh_pass=template
+ansible_ssh_private_key_file="~/.ssh/elastic_rsa"
+#ansible_ssh_pass=template
 #ansible_become=true

@@ -34,27 +34,3 @@ discovery.zen.minimum_master_nodes: {{ groups['elasticsearch-masternode'] |lengt
 discovery.zen.ping.unicast.hosts: [{% for host in groups['elasticsearch-masternode'] %}
 {% if host == groups['elasticsearch-masternode'][-1] %}
 "{{ host }}"{% else %}"{{ host }}", {% endif%}{% endfor %}]
-
-{% if es_enable_xpack %}
-# ------------------------- X-PACK ----------------------
-{% if not "security" in es_xpack_features %}
-xpack.security.enabled: false
-{% endif %}
-
-{% if not "monitoring" in es_xpack_features %}
-xpack.monitoring.enabled: false
-{% endif %}
-
-{% if not "alerting" in es_xpack_features %}
-xpack.watcher.enabled: false
-{% endif %}
-
-{% if not "ml" in es_xpack_features %}
-xpack.ml.enabled: false
-{% endif %}
-
-{% if not "graph" in es_xpack_features %}
-xpack.graph.enabled: false
-{% endif %}
-{% endif %}
-

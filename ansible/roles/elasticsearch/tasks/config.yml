@@ -5,7 +5,7 @@
     - "{{log_dir}}"
 
 - name: Create Data Directories
-  file: path={{ item }} state=directory owner={{ es_user }} group={{ es_group }}
+  file: path={{ item }} state=directory owner={{ es_user }} group={{ es_group }} recurse=yes
   with_items:
     - "{{es_datadirs}}"
 

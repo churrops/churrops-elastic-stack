@@ -9,9 +9,9 @@
 - name: Install ElasticSearch 
   hosts: elasticsearch-masternode
   roles:
-    - { role: "roles/elasticsearch", es_instance_name: "masternode",
+    - { role: "roles/elasticsearch", es_instance_name: "mn",
     es_config: {
-        cluster.name: "neo-elasticsearch-apm",
+        cluster.name: "churrops-elasticsearch",
         http.port: 9200,
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,
@@ -21,9 +21,9 @@
 - name: Install ElasticSearch
   hosts: elasticsearch-datanode
   roles:
-    - { role: "roles/elasticsearch", es_instance_name: "datanode",
+    - { role: "roles/elasticsearch", es_instance_name: "dn",
     es_config: {
-        cluster.name: "neo-elasticsearch-apm",
+        cluster.name: "churrops-elasticsearch",
         http.port: 9200,
         transport.tcp.port: 9300,
         bootstrap.memory_lock: false,
